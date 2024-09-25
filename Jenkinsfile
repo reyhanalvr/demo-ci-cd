@@ -10,7 +10,9 @@ pipeline {
            steps {
                sshagent([secret]){
                   sh """ssh -o StrictHostKeyChecking=no ${vmapps} << EOF
-                  echo test
+                  cd ${dir}
+                  git pull origin ${branch}
+                  echo "Git Pull Berhasil"
                   exit
                   EOF"""
                 }
